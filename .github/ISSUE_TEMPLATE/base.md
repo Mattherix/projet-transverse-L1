@@ -8,7 +8,7 @@ assignees: ''
 ---
 Difficulté: Facile/Moyen/Difficile 
 Temps: 15min/2h <!-- En temps de travail -->
-Branch: templates <!-- La branch sur lequel on travail -->
+Branche: templates <!-- La branche sur lequel on travails -->
 
 
 ## Besoin

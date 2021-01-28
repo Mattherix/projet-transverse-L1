@@ -17,7 +17,7 @@ Temps: 15min/2h <!-- En temps de travail -->
 ## Resultat
 
 <!-- Un rapide texte explicatif pour les autres membres -->
-<!-- Pas la solution au besoin, c'est évidant c'est faire des recherches -->
+<!-- Pas la solution au besoin, c'est évident c'est faire des recherches -->
 
 ## TODO
 
@@ -26,6 +26,6 @@ Temps: 15min/2h <!-- En temps de travail -->
 
 ## Liens
 
-<!-- Lien vers les sources trouvés -->
+<!-- Lien vers les sources trouvées -->
 
 
