@@ -1,5 +1,5 @@
 ---
-name: Recherche
+name: Bug
 about: Créer une issue sur un bug
 title: ''
 labels: 'bug'
