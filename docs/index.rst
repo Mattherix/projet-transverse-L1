@@ -10,9 +10,7 @@ Welcome to Projet Transverse L1's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: main
-  :members:
-
+   modules
 
 
 Indices and tables
