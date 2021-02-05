@@ -13,7 +13,7 @@ jobs:
       run: |
         python3 -m pip install -r requirements.txt
         python3 -m pip install -r requirements-docs.txt
-        sudo apt install make python3-sphinx
+        sudo apt-get install make
     - uses: ammaraskar/sphinx-action@0.4
       with:
         docs-folder: "docs/"
