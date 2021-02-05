@@ -6,9 +6,7 @@ jobs:
     name: Push Sphinx Pages
     runs-on: ubuntu-latest
     steps:
-    - name: Renanme requirements
-      run: |
-        mv requirements-docs.txt requirements.txt
+    - uses: actions/checkout@v2
     - uses: seanzhengw/sphinx-pages@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
