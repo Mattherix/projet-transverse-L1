@@ -19,7 +19,7 @@ Anais HAMADA
 
 > Jeux du type Angry Birds/Doodle Jump, l'objectif est de se catapulter à la verticale vers le haut en visant des plateformes. Lorsque le personnage touche une plateforme, il se place et se fixe sur la plateforme. Le but du jeu est d'atteindre la dernière plateforme et lorsque le personnage tombe, l'utilisateur a perdu
 
-## Contexte et définition du projet 
+## Contexte et définition du projet
 
 <!-- explication du projet -->
 
@@ -27,14 +27,14 @@ Anais HAMADA
 
 <!-- Planning -->
 
+## Organisation
+
+<!-- Cf. organisation.md -->
+
 ## Calcul physique
 
 <!-- Calcul physique -->
 
-## Spécification technique 
+## Spécification technique
 
 <!-- Ce qui est lier au code -->
-
-## Organisation
-
-<!-- Cf. organisation.md -->
