@@ -12,9 +12,9 @@ jobs:
     - name: Docs dependencies
       run: |
         python3 -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
-        if [ -f requirements-docs.txt ]; then pip3 install -r requirements-docs.txt; fi
-        sudo apt install python-sphinx make
+        pip3 install -r requirements.txt
+        pip3 install -r requirements-docs.txt
+        sudo apt install make
     - name: Build docs
       run: |
         cd docs/
