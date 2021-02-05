@@ -14,12 +14,9 @@ jobs:
         python3 -m pip install -r requirements.txt
         python3 -m pip install -r requirements-docs.txt
         sudo apt install make python3-sphinx
-    - name: Build docs
-      run: |
-        ls -la
-        cd docs/
-        sphinx-build -M html . _build
-        cd ..
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
