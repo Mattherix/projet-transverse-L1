@@ -1,3 +1,12 @@
+# Cahier des charges
+
+Matthieu ROQUEJOFFRE (chef d'équipe)
+
+Médéric ZHOU SUN
+Alexis UNG
+Soanja RAVALISAONA
+Anais HAMADA
+
 ## Propositions de sujets pour le Projet Transverse
 
 * Jeux de fléchettes et jeux de Handball
