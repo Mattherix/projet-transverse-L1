@@ -58,7 +58,7 @@ sans difficulté de droite à gauche et vice-versa
 ### Solutions apportées
 
 * Utilisation d'une catapulte (inspiré d'Angry Birds) pour introduire une ou plusieurs trajectoires paraboliques et verticales
-> Mouvement parabolique: Application de la deuxième loi de Newton (F=ma avec F:force, m:masse et a:accélération).
+> Mouvement parabolique : Application de la deuxième loi de Newton (F = m a avec F : force, m : masse et a : accélération).
 
 > Le référentiel terrestre peut être considéré comme galiléen ;
 On considère le repère Oxy, plan correspondant au mouvement : Ox correspondant à l’horizontale et Oy à la verticale ;
