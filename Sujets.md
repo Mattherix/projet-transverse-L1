@@ -21,14 +21,14 @@ Anais HAMADA
 
 ## Contexte et définition du projet
 
-# Base et Contexte du jeu:
+### Base et Contexte du jeu:
 
 Le jeu se joue à 1 joueur.Le but du jeu consiste à sauter de plateforme en plateforme verticalement sans tomber
 (inspiré de  Doodle Jump) à l'aide d'une catapulte (inspiré d'Angry Bird), le joueur devra viser une plateforme 
 à l'aide de sa souris (façon catapulte) afin de monter en altitude, si le joueur tombe de la plateforme la partie se termine.
 Le joueur gagne la partie au bout d'une altitude atteinte.
 
-# Fonctionnalités additionnelles sugérées:
+### Fonctionnalités additionnelles sugérées:
 
 * Changement de l'environnement au fur et à mesure de l'avancement de la partie 
 (obstacle comme monstre ou plante dangereuse,plateforme glissante,vents...)
