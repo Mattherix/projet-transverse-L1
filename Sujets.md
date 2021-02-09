@@ -42,11 +42,10 @@ sans difficulté de droite à gauche et vice-versa
 
 ## Planning & Délai
 
-<!-- Planning -->
 
 ## Organisation
 
-<!-- Cf. organisation.md -->
+Cf. [organisation.md](organisation.md)
 
 ## Calcul physique
 
