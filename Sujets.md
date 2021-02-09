@@ -58,20 +58,29 @@ sans difficulté de droite à gauche et vice-versa
 ### Solutions apportées:
 
 * Utilisation d'une catapulte (inspiré d'Angry Birds) pour introduire une ou plusieurs trajectoires paraboliques et verticales
-> Mouvement parabolique: Application de la deuxième loi de Newton (F=ma avec F:force, m:masse et a:accélération). Le référentiel terrestre peut être considéré comme galiléen;
+> Mouvement parabolique: Application de la deuxième loi de Newton (F=ma avec F:force, m:masse et a:accélération).
+
+> Le référentiel terrestre peut être considéré comme galiléen;
 On considère le repère Oxy, plan correspondant au mouvement : Ox correspondant à l’horizontale et Oy à la verticale;
 La seule force extérieure au système (le personnage) est le poids;
+
 > D’après le PFD, on a:
 P = ma ⇔ mg = ma ⇔ a = g
+
 > On intègre deux fois le vecteur accélération, que l’on projette sur les deux axes, pour obtenir les équations horaires du système:
 a (0, −g) ⇒ v (v0 cos α, − gt + v0 sin α) ⇒ OM (v0 cos α t, - 1/2 gt^2 + v0 sin α t)
+
 > On obtient alors les équations horaires du mouvement suivantes:
 x(t) = v0 cos α t
 y(t) = − 1/2 gt^2 + v0 sin α t
+
 > Pour obtenir l’équation de la trajectoire, il faut isoler t dans l’équation horaire puis le remplacer dans l’équation horaire:
-> On a: t = x / v0 cos α
+On a: t = x / v0 cos α
+
 > On remplace: y = − 1/2 g (x / v0 cos α)^2 + v0 sin α (x / v0 cos α)
+
 > On obtient l’équation de la trajectoire suivante: y = (- g / 2v0^2 cos^2 α) x^2 + tan α x
+
 * Emploie de plusieurs variables telles que: l'altitude, la masse, le temps, l'espace, la puissance de la catapulte...
 
 <!-- Calcul physique -->
