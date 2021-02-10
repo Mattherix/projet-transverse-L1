@@ -114,13 +114,20 @@ On a : t = x / v0 cos α
 
 * Utiliser Python
 * Employer des rétroactions (gagné, perdu, conseil...)
+* Avoir un code documenté et sans bug
+* Stocker des données entre chaque partie
 * Avoir un rendu graphique
 
 ### Solutions apportées
 
 * Utilisation de Python 3.6+ (soit la 3.6, 3.7, 3.8, 3.9 à ce jour)
-* Emploie des rétroactions telles que gagné lorsque l'utilisateur atteint une certaine altitude, perdu lorsque l'utilisateur tombe et sort du cadre de l'écran et enfin les conseils par rapport à l'utilisation de la catapulte
+* Emploie des rétroactions telles que gagné lorsque l'utilisateur atteint une certaine altitude,
+  perdu lorsque l'utilisateur tombe et sort du cadre de l'écran et enfin les conseils par rapport à l'utilisation de la catapulte
+* Documentation grâce à [sphinx](https://www.sphinx-doc.org/fr/master/) et test via [unittest](https://docs.python.org/fr/3/library/unittest.html)
+* Sauvegarde dans un fichier csv/json
 * Utilisation de la librairie PyGame pour obtenir un rendu graphique et avoir des interactions avec le jeu
 > <!-- Explication de PyGame -->
 
-<!-- Ce qui est lier au code -->
+
+
+
