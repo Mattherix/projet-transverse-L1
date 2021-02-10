@@ -126,8 +126,3 @@ On a : t = x / v0 cos α
 * Documentation grâce à [sphinx](https://www.sphinx-doc.org/fr/master/) et test via [unittest](https://docs.python.org/fr/3/library/unittest.html)
 * Sauvegarde dans un fichier csv/json
 * Utilisation de la librairie PyGame pour obtenir un rendu graphique et avoir des interactions avec le jeu
-> <!-- Explication de PyGame -->
-
-
-
-
