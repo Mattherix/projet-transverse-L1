@@ -15,8 +15,8 @@ Vous pouvez noter les éléments suivants :
 
 | Pseudo Prénom NOM               | Bilan |
 |---------------------------------|-------|
-| @Mattherix Matthieu ROQUEJOFFRE |       |
-| @Alexis0720 Alexis UNG          |Suggestions de plusieurs idée de jeu, définission de la base et de la structure du jeu final et ajouts des fonctionnalités/contenus additionelles à intégrer dans le jeu.      |
+| @Mattherix Matthieu ROQUEJOFFRE | En temps que chef d'équipe j'ai trouver l'organisation que nous allons utilisé, mis en place des outils pour facilité le développement (github, codecov.io, ...) et expliqué à mes coéquipiers le fonctionnement de git. Tous ce passe comme prévue au niveau calendrier. Je n'arrive pas automatisé la construction de la documentation avec sphinx (pour l'instant je ne le fais pas, je fais voir la documentation). La communication et les manières s'organisé. Faire des recherche sur pycharm. Je suis plutôt satisfait de moi. |
+| @Alexis0720 Alexis UNG          | Suggestions de plusieurs idée de jeu, définission de la base et de la structure du jeu final et ajouts des fonctionnalités/contenus additionelles à intégrer dans le jeu.      |
 | @AeroBaze Médéric ZHOU SUN      |       |
 | @Anishamada Anais HAMADA        |       |
 | @soanja Soanja RAVALISAONA      |       |
