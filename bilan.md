@@ -19,4 +19,5 @@ Vous pouvez noter les éléments suivants :
 | @Alexis0720 Alexis UNG          | Suggestions de plusieurs idée de jeu, définission de la base et de la structure du jeu final et ajouts des fonctionnalités/contenus additionelles à intégrer dans le jeu.      |
 | @AeroBaze Médéric ZHOU SUN      |       |
 | @Anishamada Anais HAMADA        |       |
-| @soanja Soanja RAVALISAONA      |       |
+| @soanja Soanja RAVALISAONA      |    Suit à la premiere réunion que nous avons faites où notre chef d’equipe nous a expliqué les principaux outils que nous allions utilisé donc (PyCharm, GIt et Github, markdown …) j’ai compléter ce qu’il nous a expliqué sur git et github avec les différentes ressources qui ont été mise à notre disposition sur Moodle. Avec Anais nous avons également pensé à quelques idées de jeu dont nous pourrions nous inspirer (Doodle Jump, Flechettes etc.). Nous nous sommes surtout penché sur la documentation concernant la bibliothèque que nous allons utiliser pour notre jeu qui est Pygame. Nous avons ainsi fait des recherches afin de pouvoir faire une présentation synthetique de cet outil au reste du groupe. 
+Je n'ai pas encore rencontré de difficultés majeures pour le moment dans l’avancement du projet. Pour le moment les principales qualités développées sont l'organisation du temps, l'assiduité.    |
