@@ -16,7 +16,7 @@ Vous pouvez noter les éléments suivants :
 | Pseudo Prénom NOM               | Bilan |
 |---------------------------------|-------|
 | @Mattherix Matthieu ROQUEJOFFRE |       |
-| @Alexis0720 Alexis UNG          |       |
+| @Alexis0720 Alexis UNG          |Suggestions de plusieurs idée de jeu, définission de la base et de la structure du jeu final et ajouts des fonctionnalités/contenus additionelles à intégrer dans le jeu.      |
 | @AeroBaze Médéric ZHOU SUN      |       |
 | @Anishamada Anais HAMADA        |       |
 | @soanja Soanja RAVALISAONA      |       |
