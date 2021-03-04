@@ -47,7 +47,7 @@ while True:
 
 
 """
-from math import cos, sin, radians
+from math import cos, sin, radians, tan
 
 from pygame import display
 
@@ -55,20 +55,29 @@ display.init()
 
 
 class Perso:
-    def __init__(self, x, y, w, h, color=(66, 73, 73)):
+    def __init__(self, x, y, w, h, v=10, g=9.81, angle=30, color=(66, 73, 73)):
         self.x = x
         self.y = y
         self.w = w
         self.h = h
+        self.v = v
+        self.g = g
+        self.angle = angle
+        self.h = h
         self.color = color
 
-    def rotate(self, coord, angle, anchor=(0, 0)):
-        corr = 0
-        return (
-            (coord[0] - anchor[0]) * cos(angle + radians(corr)) - (coord[1] - anchor[1]) * sin(angle + radians(corr)),
-            (coord[0] - anchor[0]) * sin(angle + radians(corr)) + (coord[1] - anchor[1]) * cos(angle + radians(corr)))
+    def pos_projectile(self):
+        """Position du projectile
 
-    def translate(self, coord):
+        :param x: x(t) = v * cos(a) * t
+        :param v: la vitesse initiale, à laquelle le projectile est lancé, en m/s
+        :param g: l'accélération de la pesanteur en m/s2 (9,81 m/s2 à la surface de la Terre)
+        :param angle: l'angle de portée, c'est-à-dire l'angle avec lequel le projectile est lancé, en degrés
+        :return:
+        """
+        return (- self.g / ((2 * self.v) ** 2) * ((cos(self.angle)) ** 2)) * (self.x ** 2) + tan(self.angle) * self.x
+
+    def set_position(self, coord):
         self.x = coord[0] + self.x
         self.y = coord[1] + self.y
 
@@ -96,9 +105,9 @@ while True:
             pygame.quit()
             print("End")
 
-    p.translate((5, 5))
+    p.set_position((p.x, p.pos_projectile()))
     p.draw(surface)
 
     # mettre a jour l'écran
-    time = clock.tick(60)
+    time = clock.tick(1)
     pygame.display.update()
