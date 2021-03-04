@@ -46,7 +46,7 @@ while True:
     pygame.display.flip()
 
 """
-ass Slingshot :
+class Slingshot :
     def init (self, x, y, w, h, color = (100, 200, 100)) :
     self.x = x
     self.y = y
