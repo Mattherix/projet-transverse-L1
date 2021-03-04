@@ -53,7 +53,8 @@ from pygame import display
 
 display.init()
 
-class Slingshot:
+
+class Perso:
     def __init__(self, x, y, w, h, color=(66, 73, 73)):
         self.x = x
         self.y = y
@@ -68,20 +69,11 @@ class Slingshot:
             (coord[0] - anchor[0]) * sin(angle + radians(corr)) + (coord[1] - anchor[1]) * cos(angle + radians(corr)))
 
     def translate(self, coord):
-        return [coord[0] + self.x, coord[1] + self.y]
+        self.x = coord[0] + self.x
+        self.y = coord[1] + self.y
 
     def draw(self, surface, loaded=None):
         pygame.draw.rect(surface, self.color, (self.x, self.y + self.h * 1 / 3, self.w, self.h * 2 / 3))
-
-        if (not loaded is None) and loaded.loaded:
-            pygame.draw.line(surface, (100, 30, 22), (self.x - self.w / 4 + self.w / 4, self.y + self.h / 6),
-                             (loaded.x, loaded.y + loaded.r / 2), 10)
-            pygame.draw.line(surface, (100, 30, 22), (self.x + self.w, self.y + self.h / 6),
-                             (loaded.x + loaded.r, loaded.y + loaded.r / 2), 10)
-
-        pygame.draw.rect(surface, self.color, (self.x - self.w / 4, self.y, self.w / 2, self.h / 3), 5)
-        pygame.draw.rect(surface, self.color, (self.x + self.w - self.w / 4, self.y, self.w / 2, self.h / 3), 5)
-
 
 import pygame
 
@@ -93,7 +85,8 @@ screen = pygame.display.set_mode((1080, 720))
 background = pygame.image.load('assets/space1.png')
 
 surface = display.get_surface()
-s = Slingshot(100, 100, 20, 20)
+p = Perso(100, 100, 20, 20)
+clock = pygame.time.Clock()
 while True:
     # arriere plan du jeu,
     screen.blit(background, (0, 0))
@@ -103,6 +96,9 @@ while True:
             pygame.quit()
             print("End")
 
-    s.draw(surface)
+    p.translate((5, 5))
+    p.draw(surface)
+
     # mettre a jour l'écran
-    pygame.display.flip()
+    time = clock.tick(60)
+    pygame.display.update()
