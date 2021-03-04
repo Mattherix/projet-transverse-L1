@@ -1,4 +1,4 @@
-import sys, time, pygame
+"""import sys, time, pygame
 from pygame import time, display
 from math import tan, cos, sin, radians
 
@@ -15,14 +15,14 @@ ballrect = ball.get_rect()
 
 
 def pos_projectile(x, v, g, angle):
-    """Position du projectile
+    \"""Position du projectile
 
     :param x: x(t) = v * cos(a) * t
     :param v: la vitesse initiale, à laquelle le projectile est lancé, en m/s
     :param g: l'accélération de la pesanteur en m/s2 (9,81 m/s2 à la surface de la Terre)
     :param angle: l'angle de portée, c'est-à-dire l'angle avec lequel le projectile est lancé, en degrés
     :return:
-    """
+    \"""
     return (- g / ((2 * v) ** 2) * ((cos(angle)) ** 2)) * (x ** 2) + tan(angle) * x
 
 
@@ -72,26 +72,23 @@ class Slingshot:
         pygame.draw.rect(display, self.color, (self.x - self.w/4, self.y, self.w/2, self.h/3), 5)
         pygame.draw.rect(display, self.color, (self.x + self.w - self.w/4, self.y, self.w/2, self.h/3), 5)
 
-        
-        
-import sys, time, pygame
-from pygame import time
-from math import tan, cos
+
+"""
+import pygame
+
 pygame.init()
 
-
 pygame.display.set_caption("TheGame")
-screen = pygame.display.set_mode((1080,720))
+screen = pygame.display.set_mode((1080, 720))
 
 background = pygame.image.load('assets/space1.png')
-
 
 running = True
 
 while running:
-    #arriere plan du jeu,
-    screen.blit(background,(0,0))
-    #mettre a jour l'écran
+    # arriere plan du jeu,
+    screen.blit(background, (0, 0))
+    # mettre a jour l'écran
     pygame.display.flip()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
