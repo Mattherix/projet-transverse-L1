@@ -55,7 +55,7 @@ display.init()
 
 
 class Perso:
-    def __init__(self, x, y, w, h, v=10, g=9.81, angle=30, color=(66, 73, 73)):
+    def __init__(self, x, y, w, h, v=10, g=9.81, angle=1, color=(66, 73, 73)):
         self.x = x
         self.y = y
         self.w = w
@@ -77,9 +77,9 @@ class Perso:
         """
         return (- self.g / ((2 * self.v) ** 2) * ((cos(self.angle)) ** 2)) * (self.x ** 2) + tan(self.angle) * self.x
 
-    def set_position(self, coord):
-        self.x = coord[0] + self.x
-        self.y = coord[1] + self.y
+    def next_position(self, x):
+        self.x = self.x + x
+        self.y = self.pos_projectile()
 
     def draw(self, surface, loaded=None):
         pygame.draw.rect(surface, self.color, (self.x, self.y + self.h * 1 / 3, self.w, self.h * 2 / 3))
@@ -94,7 +94,7 @@ screen = pygame.display.set_mode((1080, 720))
 background = pygame.image.load('assets/space1.png')
 
 surface = display.get_surface()
-p = Perso(100, 100, 20, 20)
+p = Perso(100, 500, 20, 20)
 clock = pygame.time.Clock()
 while True:
     # arriere plan du jeu,
@@ -105,9 +105,9 @@ while True:
             pygame.quit()
             print("End")
 
-    p.set_position((p.x, p.pos_projectile()))
+    p.next_position(1)
     p.draw(surface)
 
     # mettre a jour l'écran
-    time = clock.tick(1)
+    time = clock.tick(60)
     pygame.display.update()
