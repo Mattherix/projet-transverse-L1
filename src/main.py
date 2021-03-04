@@ -1,55 +1,11 @@
-"""import sys, time, pygame
-from pygame import time, display
-from math import tan, cos, sin, radians
+from math import cos, tan
+from time import sleep
+
+import pygame
+from pygame import display
 
 pygame.init()
 
-FPS = 1
-SIZE = width, height = 1000, 500
-
-speed = [2, 2]
-black = 0, 0, 0
-screen = pygame.display.set_mode(SIZE)
-ball = pygame.image.load("intro_ball.gif")
-ballrect = ball.get_rect()
-
-
-def pos_projectile(x, v, g, angle):
-    \"""Position du projectile
-
-    :param x: x(t) = v * cos(a) * t
-    :param v: la vitesse initiale, à laquelle le projectile est lancé, en m/s
-    :param g: l'accélération de la pesanteur en m/s2 (9,81 m/s2 à la surface de la Terre)
-    :param angle: l'angle de portée, c'est-à-dire l'angle avec lequel le projectile est lancé, en degrés
-    :return:
-    \"""
-    return (- g / ((2 * v) ** 2) * ((cos(angle)) ** 2)) * (x ** 2) + tan(angle) * x
-
-
-x = 0
-v = 1
-g = 9.81
-angle = 30
-clock = pygame.time.Clock()
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
-
-    x += 1
-    ballrect.x = x
-    ballrect.y = pos_projectile(x, v, g, angle)
-
-    screen.fill(black)
-    screen.blit(ball, ballrect)
-    time = clock.tick(FPS)
-    pygame.display.flip()
-
-
-"""
-from math import cos, sin, radians, tan
-
-from pygame import display
 
 display.init()
 
@@ -85,12 +41,9 @@ class Perso:
     def draw(self, surface, loaded=None):
         pygame.draw.rect(surface, self.color, (self.x, self.y + self.h * 1 / 3, self.w, self.h * 2 / 3))
 
-import pygame
-from time import sleep
-pygame.init()
 
-pygame.display.set_caption("TheGame")
-screen = pygame.display.set_mode((1080, 720))
+display.set_caption("TheGame")
+screen = display.set_mode((1080, 720))
 
 background = pygame.image.load('assets/space1.png')
 
@@ -101,7 +54,6 @@ sleep(3)
 surface = display.get_surface()
 p = Perso(100, 500, 20, 20, v=v, angle=angle)
 clock = pygame.time.Clock()
-
 
 while True:
     # arriere plan du jeu,
@@ -117,4 +69,4 @@ while True:
 
     # mettre a jour l'écran
     time = clock.tick(60)
-    pygame.display.update()
+    display.update()
