@@ -1,4 +1,8 @@
+"""Fonction s'occupant des collisions"""
+
 import pygame
+
+from src.settings import BLOCK_LENGHT, BLOCK_HEIGHT
 
 
 def from_coord_to_grid(pos):
@@ -8,8 +12,8 @@ def from_coord_to_grid(pos):
     On limite i et j à être positif.
     """
     x, y = pos
-    i = max(0, int(x // 25))
-    j = max(0, int(y // 25))
+    i = max(0, int(x // BLOCK_LENGHT))
+    j = max(0, int(y // BLOCK_HEIGHT))
     return i, j
 
 
@@ -26,8 +30,8 @@ def get_neighbour_blocks(niveau, i_start, j_start):
         for i in range(i_start, i_start + 2):
             try:
                 if niveau[j][i] == 1:
-                    topleft = i * 25, j * 25
-                    blocks.append(pygame.Rect(topleft, (25, 25)))
+                    topleft = i * BLOCK_LENGHT, j * BLOCK_HEIGHT
+                    blocks.append(pygame.Rect(topleft, (BLOCK_LENGHT, BLOCK_HEIGHT)))
             except IndexError:
                 # Il n'y a pas de blocks de ce coté
                 pass
@@ -44,8 +48,8 @@ def bloque_sur_collision(niveau, old_pos, new_pos, vx, vy):
     La fonction retourne la position modifiée pour new_pos ainsi que les
     vitesses modifiées selon les éventuelles collisions.
     """
-    old_rect = pygame.Rect(old_pos, (25, 25))
-    new_rect = pygame.Rect(new_pos, (25, 25))
+    old_rect = pygame.Rect(old_pos, (BLOCK_LENGHT, BLOCK_HEIGHT))
+    new_rect = pygame.Rect(new_pos, (BLOCK_LENGHT, BLOCK_HEIGHT))
     i, j = from_coord_to_grid(new_pos)
     collide_later = list()
     blocks = get_neighbour_blocks(niveau, i, j)

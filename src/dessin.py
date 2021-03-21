@@ -1,9 +1,8 @@
 import pygame
 
-from src.settings import VERT
+from src.settings import VERT, BLOCK_HEIGHT, BLOCK_LENGHT
 
-
-mur = pygame.Surface((25, 25))
+mur = pygame.Surface((BLOCK_LENGHT, BLOCK_HEIGHT))
 mur.fill(VERT)
 
 
@@ -15,4 +14,4 @@ def dessiner_niveau(surface, niveau):
     for j, ligne in enumerate(niveau):
         for i, case in enumerate(ligne):
             if case == 1:
-                surface.blit(mur, (i * 25, j * 25))
+                surface.blit(mur, (i * BLOCK_LENGHT, j * BLOCK_HEIGHT))
