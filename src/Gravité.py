@@ -76,9 +76,13 @@ def get_neighbour_blocks(niveau, i_start, j_start):
     blocks = list()
     for j in range(j_start, j_start + 2):
         for i in range(i_start, i_start + 2):
-            if niveau[j][i] == 1:
-                topleft = i * 25, j * 25
-                blocks.append(pygame.Rect((topleft), (25, 25)))
+            try:
+                if niveau[j][i] == 1:
+                    topleft = i * 25, j * 25
+                    blocks.append(pygame.Rect(topleft, (25, 25)))
+            except IndexError:
+                # Il n'y a pas de blocks de ce coté
+                pass
     return blocks
 
 
