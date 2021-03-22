@@ -24,6 +24,8 @@ display.set_caption(TITRE_FENETRE)
 
 timer = pygame.time.Clock()
 
+
+background = pygame.image.load('assets/space1.png')
 # Position du joueur
 x, y = 25, 100
 
@@ -44,7 +46,7 @@ while continuer:
     joueur.position(keys_pressed)
 
     # Dessin
-    screen_surface.fill(BLEU_NUIT)
+    screen_surface.blit(background, (0, 0))
     dessiner_niveau(screen_surface, NIVEAU)
     joueur.draw(screen_surface)
 
