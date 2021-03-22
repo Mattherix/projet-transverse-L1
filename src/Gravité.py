@@ -11,6 +11,13 @@ from src.joueur import Joueur
 from src.settings import JAUNE, BLEU_NUIT, NIVEAU, GRAVITE, TAILLE_FENETRE, TITRE_FENETRE, FPS
 
 pygame.init()
+
+
+pygame.mixer.init()
+pygame.mixer.music.load("music_and_sound/[04] Flowering Night.flac")
+pygame.mixer.music.play(-1)
+
+
 fenetre_rect = pygame.Rect((0, 0), TAILLE_FENETRE)
 screen_surface = pygame.display.set_mode(TAILLE_FENETRE)
 display.set_caption(TITRE_FENETRE)

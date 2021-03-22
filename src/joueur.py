@@ -1,4 +1,5 @@
-from math import cos, tan
+from math import cos, tan, sin
+from xml.etree.ElementTree import PI
 
 import pygame
 from pygame.locals import K_RIGHT, K_LEFT, K_SPACE
@@ -16,6 +17,8 @@ class Joueur:
         # Vitesse du joueur
         self.vx = 0
         self.vy = 0
+
+        self.t = 0
         self.w = w
         self.h = h
         self.vitesse = vitesse
@@ -42,21 +45,22 @@ class Joueur:
         self.y = self.pos_projectile()
 
     def draw(self, surface):
-        joueur = pygame.Surface((25, 25))
-        joueur.fill(JAUNE)
+        joueur = pygame.image.load('assets/balle.jpg')
         surface.blit(joueur, (self.x, self.y))
 
     def position(self, keys_pressed):
         old_x, old_y = self.x, self.y
         if self.blocked != 0:
-            self.vx = self.sens * (self.vitesse * cos(self.angle))
-            self.vy = +(self.vitesse * cos(self.angle))
+            self.vx = -1 * self.sens * self.vitesse * cos(3.14 - self.angle)
+            self.vy = -1 * GRAVITE * self.t - self.vitesse * sin(3.14 - self.angle)
 
+            self.t += 1
             self.blocked -= 1
         else:
             if keys_pressed[K_SPACE]:
                 self.blocked = FPS * 1  # Bloquer pour 1s
                 self.sens = -1 * ((keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) // 1)
+                self.t = 0
             self.vx = (keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) * 5
 
         self.vy += GRAVITE

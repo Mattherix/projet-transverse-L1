@@ -4,6 +4,7 @@ from src.settings import VERT, BLOCK_HEIGHT, BLOCK_LENGHT
 
 mur = pygame.Surface((BLOCK_LENGHT, BLOCK_HEIGHT))
 mur.fill(VERT)
+mur = pygame.image.load('assets/block.png')
 
 
 def dessiner_niveau(surface, niveau):

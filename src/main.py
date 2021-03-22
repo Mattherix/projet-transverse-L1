@@ -6,7 +6,6 @@ from pygame import display
 
 pygame.init()
 
-
 display.init()
 
 
