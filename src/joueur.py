@@ -45,7 +45,8 @@ class Joueur:
         self.y = self.pos_projectile()
 
     def draw(self, surface):
-        joueur = pygame.image.load('assets/balle.jpg')
+        joueur = pygame.image.load('assets/balle.jpg').convert_alpha()
+        joueur.set_colorkey ((255, 255, 255))  # Rend le blanc (valeur RGB : 255,255,255) de l'image transparent
         surface.blit(joueur, (self.x, self.y))
 
     def position(self, keys_pressed):
