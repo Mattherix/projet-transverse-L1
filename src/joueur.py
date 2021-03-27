@@ -4,7 +4,7 @@ from xml.etree.ElementTree import PI
 import pygame
 from pygame.locals import K_RIGHT, K_LEFT, K_SPACE
 
-from src.collision import bloque_sur_collision
+from src.collisions import bloque_sur_collision
 from src.settings import GRAVITE, NIVEAU, CONSTANTE_GRAVITATIONNEL, JAUNE, FPS
 
 

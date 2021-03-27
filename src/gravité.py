@@ -5,7 +5,7 @@ import pygame
 from pygame import display
 from pygame.locals import QUIT, KEYDOWN, K_SPACE, K_RIGHT, K_LEFT
 
-from src.collision import bloque_sur_collision
+from src.collisions import bloque_sur_collision
 from src.dessin import dessiner_niveau
 from src.joueur import Joueur
 from src.settings import JAUNE, BLEU_NUIT, NIVEAU, GRAVITE, TAILLE_FENETRE, TITRE_FENETRE, FPS
