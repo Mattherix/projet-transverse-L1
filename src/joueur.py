@@ -46,7 +46,7 @@ class Joueur:
 
     def draw(self, surface):
         joueur = pygame.image.load('assets/balle.jpg').convert_alpha()
-        joueur.set_colorkey ((255, 255, 255))  # Rend le blanc (valeur RGB : 255,255,255) de l'image transparent
+        joueur.set_colorkey((255, 255, 255))  # Rend le blanc (valeur RGB : 255,255,255) de l'image transparent
         surface.blit(joueur, (self.x, self.y))
 
     def position(self, keys_pressed):
@@ -64,9 +64,11 @@ class Joueur:
                 self.t = 0
             self.vx = (keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) * 5
 
-        self.vy += GRAVITE
+        if not self.blocked:
+            self.vy += GRAVITE
         self.vy = min(20, self.vy)  # vy ne peut pas dépasser 25 sinon effet tunnel...
 
         self.x += self.vx
         self.y += self.vy
-        self.x, self.y, self.vx, self.vy = bloque_sur_collision(NIVEAU, (old_x, old_y), (self.x, self.y), self.vx, self.vy)
+        self.x, self.y, self.vx, self.vy = bloque_sur_collision(NIVEAU, (old_x, old_y), (self.x, self.y), self.vx,
+                                                                self.vy)

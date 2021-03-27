@@ -30,6 +30,6 @@ GRIS = (190, 190, 190)
 
 
 # Gravité vers le bas donc positive
-GRAVITE = 0.1
+GRAVITE = 0.2
 
 CONSTANTE_GRAVITATIONNEL = 9.81
