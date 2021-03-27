@@ -2,6 +2,7 @@ from math import cos, tan
 from time import sleep
 
 import pygame
+from catapulte_jauge import Catapulte, Jauge
 from pygame import display
 
 pygame.init()

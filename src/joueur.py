@@ -1,11 +1,10 @@
 from math import cos, tan, sin
-from xml.etree.ElementTree import PI
 
 import pygame
 from pygame.locals import K_RIGHT, K_LEFT, K_SPACE
 
 from src.collisions import bloque_sur_collision
-from src.settings import GRAVITE, NIVEAU, CONSTANTE_GRAVITATIONNEL, JAUNE, FPS
+from src.settings import GRAVITE, NIVEAU, CONSTANTE_GRAVITATIONNEL, FPS
 
 
 class Joueur:
