@@ -52,6 +52,8 @@ angle = int(input("Angle: "))
 sleep(3)
 
 surface = display.get_surface()
+catapulte = Catapulte()
+jauge = Jauge()
 p = Perso(100, 500, 20, 20, v=v, angle=angle)
 clock = pygame.time.Clock()
 

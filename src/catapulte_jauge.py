@@ -1,6 +1,8 @@
-import pygame
 from math import ceil
-from settings import GRIS, JAUNE, TAILLE_FENETRE
+
+import pygame
+
+from settings import GRIS, JAUNE, TAILLE_FENETRE, VERT
 
 
 class Jauge:
@@ -20,3 +22,17 @@ class Jauge:
         pygame.draw.rect(surface, self.background_color,
                          (self.pos[0][0] + self.loading_pixel, self.pos[0][1], self.pos[1][0], self.pos[1][1])
                          )
+
+
+class Catapulte:
+    def __init__(self, color=VERT, fil=GRIS):
+        self.color = color
+        self.fil = fil
+
+    def draw(self, screen_surface, loaded=None):
+        pygame.draw.rect(screen_surface, self.color, (100, 540, 20, 60))
+        if not (loaded is None) and loaded.loaded:
+            pygame.draw.line(screen_surface, self.fil, (100, 560))
+            pygame.draw.line(screen_surface, self.fil, (100, 540))
+        pygame.draw.rect(screen_surface, self.color, (80, 500, 20, 50))
+        pygame.draw.rect(screen_surface, self.color, (120, 500, 20, 50))

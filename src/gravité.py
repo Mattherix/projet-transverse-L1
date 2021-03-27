@@ -54,7 +54,6 @@ while continuer:
     jauge.loading_percent += 1
     jauge.draw(screen_surface)
 
-
     pygame.display.flip()
     timer.tick(FPS)
 
