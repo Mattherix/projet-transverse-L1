@@ -53,13 +53,13 @@ class Joueur:
         old_x, old_y = self.x, self.y
         if self.blocked != 0:
             self.vx = -1 * self.sens * self.vitesse * cos(3.14 - self.angle)
-            self.vy = -1 * GRAVITE * self.t - self.vitesse * sin(3.14 - self.angle)
+            self.vy = GRAVITE * self.t - self.vitesse * cos(3.14 - self.angle)
 
             self.t += 1
             self.blocked -= 1
         else:
             if keys_pressed[K_SPACE]:
-                self.blocked = FPS * 1  # Bloquer pour 1s
+                self.blocked = FPS * 5  # Bloquer pour 5s
                 self.sens = -1 * ((keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) // 1)
                 self.t = 0
             self.vx = (keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) * 5
