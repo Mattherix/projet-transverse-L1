@@ -1,3 +1,4 @@
+"""Toutes les fonction lier au dessin n'étant pas associer à une classe"""
 import pygame
 
 from src.settings import VERT, BLOCK_HEIGHT, BLOCK_LENGHT

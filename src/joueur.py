@@ -1,3 +1,4 @@
+"""La classe du joueur"""
 from math import cos, tan
 
 import pygame
@@ -85,5 +86,3 @@ class Joueur:
             self.in_mouvment = False
         else:
             self.in_mouvment = True
-
-        print(self.in_mouvment)

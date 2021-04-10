@@ -1,3 +1,4 @@
+"""Les object catapulte et jauge"""
 from math import ceil
 
 import pygame

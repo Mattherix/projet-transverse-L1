@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+"""Fichier principal du programme"""
 
 import pygame
 from pygame import display

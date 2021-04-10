@@ -1,6 +1,4 @@
-"""
-
-"""
+"""Toutes les constante du jeu son içi en temps que settings"""
 TITRE_FENETRE = "Catapulte jump"
 TAILLE_FENETRE = (1200, 700)
 
