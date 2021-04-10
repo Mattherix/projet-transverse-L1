@@ -51,8 +51,6 @@ while continuer:
     dessiner_niveau(screen_surface, NIVEAU)
     joueur.draw(screen_surface)
 
-    jauge.loading_percent += 1
-    jauge.draw(screen_surface)
 
     pygame.display.flip()
     timer.tick(FPS)

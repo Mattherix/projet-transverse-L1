@@ -3,16 +3,18 @@ from math import cos, tan, sin
 import pygame
 from pygame.locals import K_RIGHT, K_LEFT, K_SPACE
 
-from src.collisions import bloque_sur_collision
-from src.settings import GRAVITE, NIVEAU, CONSTANTE_GRAVITATIONNEL, FPS
+from catapulte_jauge import Jauge
+from collisions import bloque_sur_collision
+from settings import GRAVITE, NIVEAU, CONSTANTE_GRAVITATIONNEL, FPS
 
 
 class Joueur:
     def __init__(self, x, y, w, h, vitesse=10, g=CONSTANTE_GRAVITATIONNEL, angle=10, color=(66, 73, 73)):
         # Position du joueur
-        self.blocked = 0
+        self.in_mouvment = False
         self.x = x
         self.y = y
+
         # Vitesse du joueur
         self.vx = 0
         self.vy = 0
@@ -24,6 +26,9 @@ class Joueur:
         self.g = g
         self.angle = angle
         self.h = h
+        self.sens = 0
+
+        self.jauge = Jauge()
         self.color = color
 
     def pos_projectile(self):
@@ -47,23 +52,27 @@ class Joueur:
         joueur = pygame.image.load('assets/balle.jpg').convert_alpha()
         joueur.set_colorkey((255, 255, 255))  # Rend le blanc (valeur RGB : 255,255,255) de l'image transparent
         surface.blit(joueur, (self.x, self.y))
+        self.jauge.draw(surface)
 
     def position(self, keys_pressed):
         old_x, old_y = self.x, self.y
-        if self.blocked != 0:
+        # Le joueur est soit en vole, soit en train de charger son catapultage, soit il se déplace horizontalement
+        if keys_pressed[K_SPACE] and self.jauge.loading_percent < 100:
+            self.sens = -1 * ((keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) // 1)  # A droite ou à gauche ?
+            self.t = 0
+            self.jauge.loading_percent += 1
+
+            self.vitesse = self.jauge.loading_percent / 5
+        elif not self.in_mouvment:
             self.vx = -1 * self.sens * self.vitesse * cos(3.14 - self.angle)
             self.vy = GRAVITE * self.t - self.vitesse * cos(3.14 - self.angle)
 
             self.t += 1
-            self.blocked -= 1
         else:
-            if keys_pressed[K_SPACE]:
-                self.blocked = FPS * 5  # Bloquer pour 5s
-                self.sens = -1 * ((keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) // 1)
-                self.t = 0
             self.vx = (keys_pressed[K_RIGHT] - keys_pressed[K_LEFT]) * 5
+            self.jauge.loading_percent = 0
 
-        if not self.blocked:
+        if self.in_mouvment:
             self.vy += GRAVITE
         self.vy = min(20, self.vy)  # vy ne peut pas dépasser 25 sinon effet tunnel...
 
@@ -71,3 +80,10 @@ class Joueur:
         self.y += self.vy
         self.x, self.y, self.vx, self.vy = bloque_sur_collision(NIVEAU, (old_x, old_y), (self.x, self.y), self.vx,
                                                                 self.vy)
+
+        if (self.x - old_x) < 0.01 and (self.y - old_y) < 0.01:
+            self.in_mouvment = False
+        else:
+            self.in_mouvment = True
+
+        print(self.in_mouvment)
