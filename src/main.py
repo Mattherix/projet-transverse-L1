@@ -12,18 +12,15 @@ from src.settings import NIVEAU, TAILLE_FENETRE, TITRE_FENETRE, FPS
 
 pygame.init()
 
-
 pygame.mixer.init()
 pygame.mixer.music.load("music_and_sound/[04] Flowering Night.flac")
 pygame.mixer.music.play(-1)
-
 
 fenetre_rect = pygame.Rect((0, 0), TAILLE_FENETRE)
 screen_surface = pygame.display.set_mode(TAILLE_FENETRE)
 display.set_caption(TITRE_FENETRE)
 
 timer = pygame.time.Clock()
-
 
 background = pygame.image.load('assets/space1.png')
 # Position du joueur
@@ -50,7 +47,6 @@ while continuer:
     screen_surface.blit(background, (0, 0))
     dessiner_niveau(screen_surface, NIVEAU)
     joueur.draw(screen_surface)
-
 
     pygame.display.flip()
     timer.tick(FPS)

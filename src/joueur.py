@@ -1,11 +1,11 @@
-from math import cos, tan, sin
+from math import cos, tan
 
 import pygame
 from pygame.locals import K_RIGHT, K_LEFT, K_SPACE
 
 from catapulte_jauge import Jauge
 from collisions import bloque_sur_collision
-from settings import GRAVITE, NIVEAU, CONSTANTE_GRAVITATIONNEL, FPS
+from settings import GRAVITE, NIVEAU, CONSTANTE_GRAVITATIONNEL
 
 
 class Joueur:

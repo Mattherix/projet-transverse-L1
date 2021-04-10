@@ -6,7 +6,8 @@ from settings import GRIS, JAUNE, TAILLE_FENETRE, VERT
 
 
 class Jauge:
-    def __init__(self, pos=((0, TAILLE_FENETRE[1] - 20), (TAILLE_FENETRE[0], TAILLE_FENETRE[1])), loading=0, background_color=GRIS, loading_color=JAUNE):
+    def __init__(self, pos=((0, TAILLE_FENETRE[1] - 20), (TAILLE_FENETRE[0], TAILLE_FENETRE[1])), loading=0,
+                 background_color=GRIS, loading_color=JAUNE):
         self.pos = pos  # (x1, y1), (x2, y2)
         self.loading_percent = loading
         self.loading_pixel = ceil((self.pos[1][0] * self.loading_percent) / 100)

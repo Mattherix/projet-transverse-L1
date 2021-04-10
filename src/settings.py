@@ -28,7 +28,6 @@ VERT = (0, 255, 0)
 JAUNE = (255, 255, 0)
 GRIS = (190, 190, 190)
 
-
 # Gravité vers le bas donc positive
 GRAVITE = 0.2
 

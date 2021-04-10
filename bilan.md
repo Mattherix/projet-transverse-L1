@@ -1,17 +1,18 @@
 # Bilan individuel de suivi du projet
 
-Ce bilan est individuel et il est à remplir avant chaque séance de suivi de projet avec votre tuteur. 
+Ce bilan est individuel et il est à remplir avant chaque séance de suivi de projet avec votre tuteur.
 
-Vous pouvez noter les éléments suivants : 
+Vous pouvez noter les éléments suivants :
+
 * Actions réalisées au sein du groupe : ce que j’ai fait de manière détaillée, ce que les autres ont fait.
-* L’évolution et l’état d’avancement du projet (situer où l’on en est et préciser l’avance ou le retard sur le calendrier prévu).
-* Difficultés rencontrées, méthodes pour les surmonter. 
+* L’évolution et l’état d’avancement du projet (situer où l’on en est et préciser l’avance ou le retard sur le
+  calendrier prévu).
+* Difficultés rencontrées, méthodes pour les surmonter.
 * Compétences et connaissances que je pense avoir développées au cours de ce projet.
 * Besoins pour aller plus loin, domaines que j’ai envie d’explorer à l’avenir.
 * Appréciation personnelle sur mon travail au sein du groupe.
 
 ## Bilan pour le 12/02/2021
-
 
 | Pseudo Prénom NOM               | Bilan |
 |---------------------------------|-------|
