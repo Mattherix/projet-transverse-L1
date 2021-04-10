@@ -3,12 +3,12 @@
 
 import pygame
 from pygame import display
-from pygame.locals import QUIT, KEYDOWN, K_SPACE, K_RIGHT, K_LEFT
+from pygame.locals import QUIT, KEYDOWN, K_SPACE
 
-from src.collision import bloque_sur_collision
+from catapulte_jauge import Jauge
 from src.dessin import dessiner_niveau
 from src.joueur import Joueur
-from src.settings import JAUNE, BLEU_NUIT, NIVEAU, GRAVITE, TAILLE_FENETRE, TITRE_FENETRE, FPS
+from src.settings import NIVEAU, TAILLE_FENETRE, TITRE_FENETRE, FPS
 
 pygame.init()
 
@@ -30,6 +30,7 @@ background = pygame.image.load('assets/space1.png')
 x, y = 25, 100
 
 joueur = Joueur(x, y, 20, 20)
+jauge = Jauge()
 
 # Boucle événementielle
 continuer = True
@@ -49,6 +50,7 @@ while continuer:
     screen_surface.blit(background, (0, 0))
     dessiner_niveau(screen_surface, NIVEAU)
     joueur.draw(screen_surface)
+
 
     pygame.display.flip()
     timer.tick(FPS)
