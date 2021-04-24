@@ -1,33 +1,29 @@
-"""
+TITLE = "CATAPULTE GAME"
+WIDTH = 480
+HEIGHT = 600
+FPS = 60
+FONT_NAME = 'arial'
+HS_FILE= "highscore.txt"
 
-"""
-TITRE_FENETRE = "Catapulte jump"
-TAILLE_FENETRE = (1200, 800)
+# Propriete des joueurs
+PLAYER_ACC = 0.5
+PLAYER_FRICTION = -0.12
+PLAYER_GRAV = 0.8
+PLAYER_JUMP = 20
 
-FPS = 30
+# Plateforme de base (x,y,longueur,epaisseur)
+PLATFORM_LIST = [(0, HEIGHT - 40, WIDTH, 40),
+                 (WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20),
+                 (125, HEIGHT - 350, 100, 20),
+                 (350, 200, 100, 20),
+                 (175, 100, 50, 20)]
 
-NIVEAU = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-]
-
-BLOCK_LENGHT = TAILLE_FENETRE[0] / len(NIVEAU[0])
-BLOCK_HEIGHT = TAILLE_FENETRE[1] / len(NIVEAU)
-
-BLEU_NUIT = (5, 5, 30)
-VERT = (0, 255, 0)
-JAUNE = (255, 255, 0)
-
-# Gravité vers le bas donc positive
-GRAVITE = 2
-
-CONSTANTE_GRAVITATIONNEL = 9.81
+# Couleurs
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+LIGHTBLUE = (0, 155, 155)
+BGCOLOR = LIGHTBLUE

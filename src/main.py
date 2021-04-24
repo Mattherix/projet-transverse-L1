@@ -1,71 +1,168 @@
-from math import cos, tan
-from time import sleep
+import pygame as pg
+import random
+from settings import *
+from sprites import *
+from os import path
 
-import pygame
-from pygame import display
+class Game:
+    def __init__(self):
+        # INITIALISATION ET CREATION DU JEU
+        pg.init()
+        pg.mixer.init()
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        pg.display.set_caption(TITLE)
+        self.clock = pg.time.Clock()
+        self.running = True
+        self.font_name = pg.font.match_font(FONT_NAME)
+        self.load_data()
 
-pygame.init()
-
-display.init()
-
-
-class Perso:
-    def __init__(self, x, y, w, h, v=10, g=9.81, angle=10, color=(66, 73, 73)):
-        self.x = x
-        self.y = y
-        self.w = w
-        self.h = h
-        self.v = v
-        self.g = g
-        self.angle = angle
-        self.h = h
-        self.color = color
-
-    def pos_projectile(self):
-        """Position du projectile
-
-        :param x: x(t) = v * cos(a) * t
-        :param v: la vitesse initiale, à laquelle le projectile est lancé, en m/s
-        :param g: l'accélération de la pesanteur en m/s2 (9,81 m/s2 à la surface de la Terre)
-        :param angle: l'angle de portée, c'est-à-dire l'angle avec lequel le projectile est lancé, en degrés
-        :return:
-        """
-        # return (- self.g) / ((2 * self.v) ** 2 * cos(self.angle) ** 2) * self.x ** 2 + tan(self.angle) * self.x
-        return -(- self.g / ((2 * self.v) ** 2) * ((cos(self.angle)) ** 2)) * (self.x ** 2) + tan(self.angle) * self.x
-
-    def next_position(self, x):
-        self.x = self.x + x
-        self.y = self.pos_projectile()
-
-    def draw(self, surface, loaded=None):
-        pygame.draw.rect(surface, self.color, (self.x, self.y + self.h * 1 / 3, self.w, self.h * 2 / 3))
+    # son et image (data)
+    def load_data(self):
+        self.dir = path.dirname(__file__)
+        #ouvrir un fichier
+        with open(path.join(self.dir, HS_FILE), 'w') as f: #meilleur score
+            try:
+                self.highscore = int(f.read())
+            except:
+                self.highscore = 0
 
 
-display.set_caption("TheGame")
-screen = display.set_mode((1080, 720))
 
-background = pygame.image.load('assets/space1.png')
+    def new(self):
+        # Creer une nouvelle partie de jeu
+        # initialisation du score
+        self.score = 0
+        self.all_sprites = pg.sprite.Group()
+        self.platforms = pg.sprite.Group()
+        self.player = Player(self)
+        self.all_sprites.add(self.player)
+        for plat in PLATFORM_LIST:#regarder settings
+            p = Platform(*plat)
+            self.all_sprites.add(p)
+            self.platforms.add(p)
+        self.run()
 
-v = int(input("Vitesse: "))
-angle = int(input("Angle: "))
-sleep(3)
+    def run(self):
+        # Boucle du jeu
+        self.playing = True
+        while self.playing:
+            self.clock.tick(FPS)
+            self.events()
+            self.update()
+            self.draw()
 
-surface = display.get_surface()
-p = Perso(100, 500, 20, 20, v=v, angle=angle)
-clock = pygame.time.Clock()
+    def update(self):
+        # update du jeu
+        self.all_sprites.update()
+        # Lorsqu'il y a une collision
+        if self.player.vel.y > 0:
+            hits = pg.sprite.spritecollide(self.player, self.platforms, False)
+            if hits:
+                self.player.pos.y = hits[0].rect.top
+                self.player.vel.y = 0
+                # La velocité du personnage s'arrete lorsqu'il retombe sur une plateforme
 
-while True:
-    # arriere plan du jeu,
-    screen.blit(background, (0, 0))
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            print("End")
+        #pour scroller le jeu
+        if self.player.rect.top <= HEIGHT / 4:
+            self.player.pos.y += abs(self.player.vel.y)
+            for plat in self.platforms:
+                plat.rect.y += abs(self.player.vel.y)
+                if plat.rect.top >= HEIGHT:
+                    plat.kill()      #supprime les plateforme qui passe en dessous de l'écran
+                    self.score += 10 #lorsqu'il monte il gagne des points
 
-    p.next_position(1)
-    p.draw(surface)
+        #Tuer le joueur lorsqu'il tombe
+        if self.player.rect.bottom > HEIGHT:
+            for sprite in self.all_sprites:
+                sprite.rect.y -= max(self.player.vel.y, 10)
+                if sprite.rect.bottom < 0:
+                    sprite.kill()
+        if len(self.platforms) == 0:
+            self.playing = False
 
-    # mettre a jour l'écran
-    time = clock.tick(60)
-    display.update()
+        # Faire apparaitre de nouvelles plateformes
+        while len(self.platforms) < 6:          #nombre de plateforme à l'écran
+            width = random.randrange(50, 100)   #parametre a changer en fonction de la resolution
+            p = Platform(random.randrange(0, WIDTH - width),
+                         random.randrange(-75, -30),
+                         width, 20)
+            self.platforms.add(p)
+            self.all_sprites.add(p)
+
+    def events(self):
+        # Evenement du jeu
+        for event in pg.event.get():
+            # Fermeture de la fenetre
+            if event.type == pg.QUIT:
+                if self.playing:
+                    self.playing = False
+                self.running = False
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_SPACE:
+                    self.player.jump()
+
+    def draw(self):
+        # Boucle du jeu - dessin
+
+        self.screen.fill(BGCOLOR)
+        self.all_sprites.draw(self.screen)
+        self.draw_text(str(self.score), 22, WHITE, WIDTH / 2, 15) #affichage du score du joueur
+        pg.display.flip()
+
+    def show_start_screen(self):
+        #Fenetre d'avant le jeu a parametrer
+        self.screen.fill(BGCOLOR)
+        self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 9)
+        self.draw_text("et dirigez-vous à l'aide des fleches directionelles", 22, WHITE, WIDTH / 2, HEIGHT / 2)
+        self.draw_text("Appuyer sur Espace pour charger le saut",22, WHITE, WIDTH / 2, HEIGHT / 3.5)
+        self.draw_text("Appuyer sur un bouton pour commencer", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
+        self.draw_text("Meilleur score: "+str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT * 3 / 3.5)
+        pg.display.flip()
+        self.wait_for_key()   #application de la fonction wait-for-key
+
+    def show_go_screen(self):
+        #fenetre apres avoir perdu
+        if not self.running:
+            return
+        self.screen.fill(BGCOLOR)
+        self.draw_text("C'est perdu! Dommage!", 55, WHITE, WIDTH / 2, HEIGHT / 9)
+        self.draw_text("Score: " + str(self.score), 35, WHITE, WIDTH / 2, HEIGHT / 2)
+        self.draw_text("Appuyer sur un bouton pour recommencer", 30, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
+        if self.score > self.highscore:    #remplacement meilleur score
+            self.highscore = self.score
+            self.draw_text("NOUVEAU SCORE!",22,WHITE, WIDTH / 2,HEIGHT / 2+ 40)
+            with open(path.join(self.dir, HS_FILE), 'w') as f:  #nouveau meilleur score dans les data
+                f.write(str(self.score))
+        else:
+            self.draw_text("Votre record est: "+ str(self.highscore),22, WHITE, WIDTH/2, HEIGHT/2 + 40)
+        pg.display.flip()
+        self.wait_for_key()
+
+
+    def wait_for_key(self):
+        waiting = True
+        while waiting:
+            self.clock.tick(30)
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    waiting = False
+                    self.running = False
+                if event.type == pg.KEYUP:
+                    waiting = False
+
+    # score du joueur
+    def draw_text(self, text, size, color, x, y):
+        font = pg.font.Font(self.font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (x, y)
+        self.screen.blit(text_surface, text_rect)
+
+g = Game()
+g.show_start_screen()
+while g.running:
+    g.new()
+    g.show_go_screen()
+
+pg.quit()
