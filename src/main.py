@@ -1,12 +1,15 @@
 import pygame as pg
 import random
 from settings import *
-from sprites import *
+from sprites import Player, Platform
 from os import path
+
 
 class Game:
     def __init__(self):
         # INITIALISATION ET CREATION DU JEU
+        self.highscore = 0
+        self.score = 0
         pg.init()
         pg.mixer.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -19,24 +22,23 @@ class Game:
     # son et image (data)
     def load_data(self):
         self.dir = path.dirname(__file__)
-        #ouvrir un fichier
-        with open(path.join(self.dir, HS_FILE), 'w') as f: #meilleur score
+        # ouvrir un fichier
+        with open(path.join(self.dir, HS_FILE), 'w') as f:  # meilleur score
+            # TODO: Gérer les erreurs d'une meilleurs manière (on ne sais pas sur quel erreur on peut tomber + faire
+            #  un test unitaire pour vérifier le fonctionnement de la méthode
             try:
                 self.highscore = int(f.read())
             except:
-                self.highscore = 0
-
-
+                pass
 
     def new(self):
         # Creer une nouvelle partie de jeu
         # initialisation du score
-        self.score = 0
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.player = Player(self)
         self.all_sprites.add(self.player)
-        for plat in PLATFORM_LIST:#regarder settings
+        for plat in PLATFORM_LIST:  # regarder settings
             p = Platform(*plat)
             self.all_sprites.add(p)
             self.platforms.add(p)
@@ -62,17 +64,16 @@ class Game:
                 self.player.vel.y = 0
                 # La velocité du personnage s'arrete lorsqu'il retombe sur une plateforme
 
-
-        #pour scroller le jeu
+        # pour scroller le jeu
         if self.player.rect.top <= HEIGHT / 4:
             self.player.pos.y += abs(self.player.vel.y)
             for plat in self.platforms:
                 plat.rect.y += abs(self.player.vel.y)
                 if plat.rect.top >= HEIGHT:
-                    plat.kill()      #supprime les plateforme qui passe en dessous de l'écran
-                    self.score += 10 #lorsqu'il monte il gagne des points
+                    plat.kill()  # supprime les plateforme qui passe en dessous de l'écran
+                    self.score += 10  # lorsqu'il monte il gagne des points
 
-        #Tuer le joueur lorsqu'il tombe
+        # Tuer le joueur lorsqu'il tombe
         if self.player.rect.bottom > HEIGHT:
             for sprite in self.all_sprites:
                 sprite.rect.y -= max(self.player.vel.y, 10)
@@ -82,8 +83,8 @@ class Game:
             self.playing = False
 
         # Faire apparaitre de nouvelles plateformes
-        while len(self.platforms) < 6:          #nombre de plateforme à l'écran
-            width = random.randrange(50, 100)   #parametre a changer en fonction de la resolution
+        while len(self.platforms) < 6:  # nombre de plateforme à l'écran
+            width = random.randrange(50, 100)  # parametre a changer en fonction de la resolution
             p = Platform(random.randrange(0, WIDTH - width),
                          random.randrange(-75, -30),
                          width, 20)
@@ -107,38 +108,37 @@ class Game:
 
         self.screen.fill(BGCOLOR)
         self.all_sprites.draw(self.screen)
-        self.draw_text(str(self.score), 22, WHITE, WIDTH / 2, 15) #affichage du score du joueur
+        self.draw_text(str(self.score), 22, WHITE, WIDTH / 2, 15)  # affichage du score du joueur
         pg.display.flip()
 
     def show_start_screen(self):
-        #Fenetre d'avant le jeu a parametrer
+        # Fenetre d'avant le jeu a parametrer
         self.screen.fill(BGCOLOR)
         self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 9)
         self.draw_text("et dirigez-vous à l'aide des fleches directionelles", 22, WHITE, WIDTH / 2, HEIGHT / 2)
-        self.draw_text("Appuyer sur Espace pour charger le saut",22, WHITE, WIDTH / 2, HEIGHT / 3.5)
+        self.draw_text("Appuyer sur Espace pour charger le saut", 22, WHITE, WIDTH / 2, HEIGHT / 3.5)
         self.draw_text("Appuyer sur un bouton pour commencer", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
-        self.draw_text("Meilleur score: "+str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT * 3 / 3.5)
+        self.draw_text("Meilleur score: " + str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT * 3 / 3.5)
         pg.display.flip()
-        self.wait_for_key()   #application de la fonction wait-for-key
+        self.wait_for_key()  # application de la fonction wait-for-key
 
     def show_go_screen(self):
-        #fenetre apres avoir perdu
+        # fenetre apres avoir perdu
         if not self.running:
             return
         self.screen.fill(BGCOLOR)
         self.draw_text("C'est perdu! Dommage!", 55, WHITE, WIDTH / 2, HEIGHT / 9)
         self.draw_text("Score: " + str(self.score), 35, WHITE, WIDTH / 2, HEIGHT / 2)
         self.draw_text("Appuyer sur un bouton pour recommencer", 30, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
-        if self.score > self.highscore:    #remplacement meilleur score
+        if self.score > self.highscore:  # remplacement meilleur score
             self.highscore = self.score
-            self.draw_text("NOUVEAU SCORE!",22,WHITE, WIDTH / 2,HEIGHT / 2+ 40)
-            with open(path.join(self.dir, HS_FILE), 'w') as f:  #nouveau meilleur score dans les data
+            self.draw_text("NOUVEAU SCORE!", 22, WHITE, WIDTH / 2, HEIGHT / 2 + 40)
+            with open(path.join(self.dir, HS_FILE), 'w') as f:  # nouveau meilleur score dans les data
                 f.write(str(self.score))
         else:
-            self.draw_text("Votre record est: "+ str(self.highscore),22, WHITE, WIDTH/2, HEIGHT/2 + 40)
+            self.draw_text("Votre record est: " + str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT / 2 + 40)
         pg.display.flip()
         self.wait_for_key()
-
 
     def wait_for_key(self):
         waiting = True
@@ -158,6 +158,7 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
+
 
 g = Game()
 g.show_start_screen()
