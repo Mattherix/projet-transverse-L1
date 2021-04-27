@@ -1,3 +1,4 @@
+"""Fichier principale du programme"""
 import pygame as pg
 import random
 from settings import *
@@ -6,8 +7,9 @@ from os import path
 
 
 class Game:
+    """La classe représentant le jeu"""
     def __init__(self):
-        # INITIALISATION ET CREATION DU JEU
+        """INITIALISATION ET CREATION DU JEU"""
         self.highscore = 0
         self.score = 0
         pg.init()
@@ -19,21 +21,9 @@ class Game:
         self.font_name = pg.font.match_font(FONT_NAME)
         self.load_data()
 
-    # son et image (data)
-    def load_data(self):
-        self.dir = path.dirname(__file__)
-        # ouvrir un fichier
-        with open(path.join(self.dir, HS_FILE), 'w') as f:  # meilleur score
-            # TODO: Gérer les erreurs d'une meilleurs manière (on ne sais pas sur quel erreur on peut tomber + faire
-            #  un test unitaire pour vérifier le fonctionnement de la méthode
-            try:
-                self.highscore = int(f.read())
-            except:
-                pass
-
     def new(self):
-        # Creer une nouvelle partie de jeu
-        # initialisation du score
+        """Creer une nouvelle partie de jeu
+           initialisation du score"""
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.player = Player(self)
@@ -44,8 +34,21 @@ class Game:
             self.platforms.add(p)
         self.run()
 
+    # son et image (data)
+    def load_data(self):
+        """Charge les sauvegardes du joueur, les fichiers audio et les images"""
+        self.dir = path.dirname(__file__)
+        # ouvrir un fichier
+        with open(path.join(self.dir, HS_FILE), 'w') as f:  # meilleur score
+            # TODO: Gérer les erreurs d'une meilleurs manière (on ne sais pas sur quel erreur on peut tomber + faire
+            #  un test unitaire pour vérifier le fonctionnement de la méthode
+            try:
+                self.highscore = int(f.read())
+            except:
+                pass
+
     def run(self):
-        # Boucle du jeu
+        """Boucle du jeu"""
         self.playing = True
         while self.playing:
             self.clock.tick(FPS)
@@ -54,7 +57,7 @@ class Game:
             self.draw()
 
     def update(self):
-        # update du jeu
+        """Update de l'état du jeu"""
         self.all_sprites.update()
         # Lorsqu'il y a une collision
         if self.player.vel.y > 0:
@@ -92,7 +95,7 @@ class Game:
             self.all_sprites.add(p)
 
     def events(self):
-        # Evenement du jeu
+        """Evenement du jeu"""
         for event in pg.event.get():
             # Fermeture de la fenetre
             if event.type == pg.QUIT:
@@ -104,7 +107,7 @@ class Game:
                     self.player.jump()
 
     def draw(self):
-        # Boucle du jeu - dessin
+        """Dessin de tous les elements du jeu"""
 
         self.screen.fill(BGCOLOR)
         self.all_sprites.draw(self.screen)
@@ -112,7 +115,8 @@ class Game:
         pg.display.flip()
 
     def show_start_screen(self):
-        # Fenetre d'avant le jeu a parametrer
+        """Écran d'accueil"""
+        # TODO: Fenetre d'avant le jeu à parametrer
         self.screen.fill(BGCOLOR)
         self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 9)
         self.draw_text("et dirigez-vous à l'aide des fleches directionelles", 22, WHITE, WIDTH / 2, HEIGHT / 2)
@@ -123,7 +127,7 @@ class Game:
         self.wait_for_key()  # application de la fonction wait-for-key
 
     def show_go_screen(self):
-        # fenetre apres avoir perdu
+        """Affiche la fenetre de défaite"""
         if not self.running:
             return
         self.screen.fill(BGCOLOR)
@@ -141,6 +145,7 @@ class Game:
         self.wait_for_key()
 
     def wait_for_key(self):
+        """Attendre que le joueur appuie sur une touche"""
         waiting = True
         while waiting:
             self.clock.tick(30)
@@ -151,8 +156,8 @@ class Game:
                 if event.type == pg.KEYUP:
                     waiting = False
 
-    # score du joueur
     def draw_text(self, text, size, color, x, y):
+        """Affiche le score du joueur"""
         font = pg.font.Font(self.font_name, size)
         text_surface = font.render(text, True, color)
         text_rect = text_surface.get_rect()

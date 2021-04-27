@@ -1,12 +1,13 @@
+"""Tous les sprites du joueur"""
 import pygame as pg
 from settings import *
 
 vec = pg.math.Vector2
 
 
-# Fichier pour les joueurs
-
 class Player(pg.sprite.Sprite):
+    """La classe représentant le joueur"""
+
     def __init__(self, game):
         pg.sprite.Sprite.__init__(self)
         self.game = game
@@ -19,7 +20,7 @@ class Player(pg.sprite.Sprite):
         self.acc = vec(0, 0)
 
     def jump(self):
-        # saut lorsqu'il saute a partir d'une plateforme
+        """Saut, lorsqu'il saute a partir d'une plateforme"""
         self.rect.x += 1
         hits = pg.sprite.spritecollide(self, self.game.platforms, False)
         self.rect.x -= 1
@@ -27,6 +28,7 @@ class Player(pg.sprite.Sprite):
             self.vel.y = -PLAYER_JUMP
 
     def update(self):
+        """Update de l'état du joueur"""
         self.acc = vec(0, PLAYER_GRAV)  # Application de la gravité sur le personnage
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT]:
@@ -49,6 +51,8 @@ class Player(pg.sprite.Sprite):
 
 
 class Platform(pg.sprite.Sprite):
+    """La classe représentant les platformes"""
+
     def __init__(self, x, y, w, h):  # Parametre de la plateforme
         pg.sprite.Sprite.__init__(self)
         self.image = pg.Surface((w, h))
