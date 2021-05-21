@@ -38,14 +38,18 @@ class Game:
     def load_data(self):
         """Charge les sauvegardes du joueur, les fichiers audio et les images"""
         self.dir = path.dirname(__file__)
-        # ouvrir un fichier
-        with open(path.join(self.dir, HS_FILE), 'w') as f:  # meilleur score
-            # TODO: Gérer les erreurs d'une meilleurs manière (on ne sais pas sur quel erreur on peut tomber + faire
-            #  un test unitaire pour vérifier le fonctionnement de la méthode
-            try:
-                self.highscore = int(f.read())
-            except:
-                pass
+        # Lire le sauvegarde du joueur
+        file_location = path.join(self.dir, HS_FILE)
+        try:
+            with open(file_location, 'r') as f:
+                try:
+                    self.highscore = int(f.read())
+                except ValueError:
+                    self.highscore = 0
+        except FileNotFoundError:
+            with open(file_location, 'w') as f:
+                f.write('0')
+            self.highscore = 0
 
     def run(self):
         """Boucle du jeu"""
