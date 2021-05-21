@@ -30,7 +30,7 @@ LIGHTBLUE = (0, 155, 155)
 BGCOLOR = LIGHTBLUE
 
 # Musique et Sond
-MUSIC_PATH = "music_and_sound/"
+MUSIC_PATH = "musics"
 MUSICS = {
     "game": [
         ("Central City.ogg", 30),
