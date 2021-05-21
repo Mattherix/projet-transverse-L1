@@ -1,7 +1,7 @@
 """Tous les pramètres du jeux"""
 TITLE = "CATAPULTE GAME"
-WIDTH = 480
-HEIGHT = 600
+WIDTH = 432
+HEIGHT = 768
 FPS = 60
 FONT_NAME = "arial"
 HS_FILE = "highscore.txt"
@@ -32,6 +32,17 @@ BGCOLOR = LIGHTBLUE
 # Musique et Sond
 MUSIC_PATH = "music_and_sound/"
 MUSICS = {
-    "mini-game": "Ship.ogg",
-    "game-over": "Game Over.ogg"
+    "game": [
+        ("Central City.ogg", 30),
+        ("Ship.ogg", 20),
+        ("Common Fight.ogg", 20),
+        ("Yellow Forest.ogg", 20),
+        ("Chiptronical.ogg", 10),
+        ("Dangerous Dungeon.ogg", 10),
+        ("Boss Fight.ogg", 10)
+    ],
+    "game-over": [
+        ("Game Over.ogg", 30),
+        ("Major Loss.ogg", 10)
+    ]
 }

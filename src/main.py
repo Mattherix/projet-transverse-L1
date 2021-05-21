@@ -57,7 +57,7 @@ class Game:
     def run(self):
         """Boucle du jeu"""
         self.playing = True
-        self.play_music(self.musics['mini-game'], 1000)
+        self.play_music(self.musics['game'], 1000)
         while self.playing:
             self.clock.tick(FPS)
             self.events()
@@ -173,9 +173,15 @@ class Game:
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
 
-    def play_music(self, music_path, fadeout):
+    def play_music(self, musics, fadeout):
         self.mixer.music.fadeout(fadeout)
-        self.mixer.music.load(path.join(self.dir, MUSIC_PATH, music_path))
+        # On choisi une musique au hasard, chaque musique à un poids, k est la longueur de la liste renvoyé
+        music_name = random.choices(
+            [music[0] for music in musics],
+            weights=[music[1] for music in musics],
+            k=1
+        )[0]
+        self.mixer.music.load(path.join(self.dir, MUSIC_PATH, music_name))
         self.mixer.music.play(-1)
 
 
