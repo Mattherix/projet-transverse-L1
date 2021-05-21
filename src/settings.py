@@ -46,3 +46,7 @@ MUSICS = {
         ("Major Loss.ogg", 10)
     ]
 }
+SOUNDS_PATH = "sounds"
+SOUNDS = {
+    "jump": "Jump 1.wav"
+}

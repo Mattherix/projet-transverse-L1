@@ -184,6 +184,9 @@ class Game:
         self.mixer.music.load(path.join(self.dir, MUSICS_PATH, music_name))
         self.mixer.music.play(-1)
 
+    def play_sound(self, sound):
+        self.mixer.Sound(path.join(self.dir, SOUNDS_PATH, sound)).play()
+
 
 
 g = Game()
