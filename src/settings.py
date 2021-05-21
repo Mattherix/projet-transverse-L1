@@ -28,3 +28,9 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 LIGHTBLUE = (0, 155, 155)
 BGCOLOR = LIGHTBLUE
+
+# Musique et Sond
+MUSIC_PATH = "music_and_sound/"
+MUSICS = {
+    "mini-game": "Ship.ogg"
+}
