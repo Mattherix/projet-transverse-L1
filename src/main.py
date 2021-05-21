@@ -181,7 +181,7 @@ class Game:
             weights=[music[1] for music in musics],
             k=1
         )[0]
-        self.mixer.music.load(path.join(self.dir, MUSIC_PATH, music_name))
+        self.mixer.music.load(path.join(self.dir, MUSICS_PATH, music_name))
         self.mixer.music.play(-1)
 
 
