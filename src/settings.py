@@ -32,5 +32,6 @@ BGCOLOR = LIGHTBLUE
 # Musique et Sond
 MUSIC_PATH = "music_and_sound/"
 MUSICS = {
-    "mini-game": "Ship.ogg"
+    "mini-game": "Ship.ogg",
+    "game-over": "Game Over.ogg"
 }

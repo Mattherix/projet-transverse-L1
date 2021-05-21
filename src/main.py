@@ -57,13 +57,13 @@ class Game:
     def run(self):
         """Boucle du jeu"""
         self.playing = True
-        self.play_music(self.musics['mini-game'])
+        self.play_music(self.musics['mini-game'], 1000)
         while self.playing:
             self.clock.tick(FPS)
             self.events()
             self.update()
             self.draw()
-        self.mixer.music.fadeout(1000)
+        self.play_music(self.musics['game-over'], 1000)
 
     def update(self):
         """Update de l'état du jeu"""
@@ -173,8 +173,9 @@ class Game:
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
 
-    def play_music(self, music_path):
-        self.mixer.music.load(path.join(self.dir,MUSIC_PATH , music_path))
+    def play_music(self, music_path, fadeout):
+        self.mixer.music.fadeout(fadeout)
+        self.mixer.music.load(path.join(self.dir, MUSIC_PATH, music_path))
         self.mixer.music.play(-1)
 
 
