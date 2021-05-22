@@ -183,6 +183,7 @@ class Game:
         )[0]
         self.mixer.music.load(path.join(self.dir, MUSICS_PATH, music_name))
         self.mixer.music.play(-1)
+        self.mixer.music.set_volume(0.4)
 
     def play_sound(self, sound):
         self.mixer.Sound(path.join(self.dir, SOUNDS_PATH, sound)).play()
