@@ -27,6 +27,8 @@ class Player(pg.sprite.Sprite):
         if hits:
             self.vel.y = -PLAYER_JUMP
 
+        self.game.play_sound(SOUNDS["jump"])
+
     def update(self):
         """Update de l'état du joueur"""
         self.acc = vec(0, PLAYER_GRAV)  # Application de la gravité sur le personnage

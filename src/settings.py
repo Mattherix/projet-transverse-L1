@@ -28,3 +28,25 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 LIGHTBLUE = (0, 155, 155)
 BGCOLOR = LIGHTBLUE
+
+# Musique et Sond
+MUSICS_PATH = "musics"
+MUSICS = {
+    "game": [
+        ("Central City.ogg", 30),
+        ("Ship.ogg", 20),
+        ("Common Fight.ogg", 20),
+        ("Yellow Forest.ogg", 20),
+        ("Chiptronical.ogg", 10),
+        ("Dangerous Dungeon.ogg", 10),
+        ("Boss Fight.ogg", 10)
+    ],
+    "game-over": [
+        ("Game Over.ogg", 30),
+        ("Major Loss.ogg", 10)
+    ]
+}
+SOUNDS_PATH = "sounds"
+SOUNDS = {
+    "jump": "Jump 1.wav"
+}

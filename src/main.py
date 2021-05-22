@@ -20,6 +20,8 @@ class Game:
         self.running = True
         self.font_name = pg.font.match_font(FONT_NAME)
         self.load_data()
+        self.mixer = pg.mixer
+        self.musics = MUSICS
 
     def new(self):
         """Creer une nouvelle partie de jeu
@@ -29,6 +31,7 @@ class Game:
         self.player = Player(self)
         self.all_sprites.add(self.player)
         for plat in PLATFORM_LIST:  # regarder settings
+            # Platform(plat[0], plat[1], ...)
             p = Platform(*plat)
             self.all_sprites.add(p)
             self.platforms.add(p)
@@ -54,11 +57,13 @@ class Game:
     def run(self):
         """Boucle du jeu"""
         self.playing = True
+        self.play_music(self.musics['game'], 1000)
         while self.playing:
             self.clock.tick(FPS)
             self.events()
             self.update()
             self.draw()
+        self.play_music(self.musics['game-over'], 1000)
 
     def update(self):
         """Update de l'état du jeu"""
@@ -167,6 +172,22 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
+
+    def play_music(self, musics, fadeout):
+        self.mixer.music.fadeout(fadeout)
+        # On choisi une musique au hasard, chaque musique à un poids, k est la longueur de la liste renvoyé
+        music_name = random.choices(
+            [music[0] for music in musics],
+            weights=[music[1] for music in musics],
+            k=1
+        )[0]
+        self.mixer.music.load(path.join(self.dir, MUSICS_PATH, music_name))
+        self.mixer.music.play(-1)
+        self.mixer.music.set_volume(0.4)
+
+    def play_sound(self, sound):
+        self.mixer.Sound(path.join(self.dir, SOUNDS_PATH, sound)).play()
+
 
 
 g = Game()
