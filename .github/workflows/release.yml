@@ -8,15 +8,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-2016
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Package Application
-      uses: JackMcKew/pyinstaller-action-windows@main
+    - uses: actions/setup-python@v2
       with:
-        path: src
+        python-version: "3.6"
+
+    - run: pip install py2exe && python setup.py install
 
     - uses: actions/upload-artifact@v2
       with:
