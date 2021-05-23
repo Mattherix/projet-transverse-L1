@@ -56,8 +56,7 @@ class Platform(pg.sprite.Sprite):
 
     def __init__(self, x, y, w, h):  # Parametre de la plateforme
         pg.sprite.Sprite.__init__(self)
-        self.image = pg.Surface((w, h))
-        self.image.fill(GREEN)
+        self.image = pg.image.load('assets/Grass.png')
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
