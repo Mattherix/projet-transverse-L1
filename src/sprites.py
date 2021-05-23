@@ -1,18 +1,17 @@
 """Tous les sprites du joueur"""
 import pygame as pg
 from settings import *
+from animation import AnimatedSprite
 
 vec = pg.math.Vector2
 
 
-class Player(pg.sprite.Sprite):
+class Player(AnimatedSprite):
     """La classe représentant le joueur"""
 
     def __init__(self, game):
-        pg.sprite.Sprite.__init__(self)
+        super().__init__("dino sheets/DinoSprites - doux - ", 10, FPS / 6)
         self.game = game
-        self.image = pg.image.load('assets/dino gifs/DinoSprites_doux.gif')
-        self.image = pg.transform.scale(self.image, (30, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
         self.pos = vec(WIDTH / 2, HEIGHT / 2)
@@ -50,6 +49,8 @@ class Player(pg.sprite.Sprite):
             self.pos.x = WIDTH
 
         self.rect.midbottom = self.pos  # positionnement du personnage sur la plateforme au debut de la partie
+
+        self.animate()
 
 
 class Platform(pg.sprite.Sprite):
