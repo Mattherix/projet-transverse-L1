@@ -2,7 +2,7 @@
 import pygame as pg
 import random
 from settings import *
-from sprites import Player, Platform
+from sprites import Player, Platform, Cloud
 from os import path
 
 
@@ -97,9 +97,14 @@ class Game:
         # Faire apparaitre de nouvelles plateformes
         while len(self.platforms) < 6:  # nombre de plateforme à l'écran
             width = random.randrange(50, 100)  # parametre a changer en fonction de la resolution
-            p = Platform(random.randrange(0, WIDTH - width),
-                         random.randrange(-75, -30),
-                         width, 20)
+            if random.randrange(0, 1):
+                p = Platform(random.randrange(0, WIDTH - width),
+                             random.randrange(-75, -30),
+                             width, 20)
+            else:
+                p = Cloud(random.randrange(0, WIDTH - width),
+                             random.randrange(-75, -30),
+                             width, 20)
             self.platforms.add(p)
             self.all_sprites.add(p)
 

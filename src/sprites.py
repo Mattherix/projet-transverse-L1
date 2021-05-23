@@ -63,3 +63,20 @@ class Platform(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+
+class Cloud(Platform, AnimatedSprite):
+    """Un nuage traversant l'écran"""
+    def __init__(self, x, y, w, h):
+        Platform.__init__(self, x, y, w, h)
+        AnimatedSprite.__init__(self, "cloud/Cloud_", 2, FPS / 6)
+
+    def update(self):
+        if self.rect.x > WIDTH:
+            self.rect.x = 0
+        if self.rect.x < 0:
+            self.rect.x = WIDTH
+
+        self.rect.x += 1
+
+        self.animate()
