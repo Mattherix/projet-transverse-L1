@@ -1,4 +1,6 @@
 """Tous les sprites du joueur"""
+import random
+
 import pygame as pg
 from settings import *
 from animation import AnimatedSprite
@@ -70,13 +72,16 @@ class Cloud(Platform, AnimatedSprite):
     def __init__(self, x, y, w, h):
         Platform.__init__(self, x, y, w, h)
         AnimatedSprite.__init__(self, "cloud/Cloud_", 2, FPS / 6)
+        self.sens = random.randrange(0, 2)
 
     def update(self):
-        if self.rect.x > WIDTH:
-            self.rect.x = 0
-        if self.rect.x < 0:
-            self.rect.x = WIDTH
-
-        self.rect.x += 1
+        if self.sens:
+            self.rect.x += 1
+            if self.rect.x > WIDTH:
+                self.rect.x = 0
+        else:
+            self.rect.x -= 1
+            if self.rect.x < 0:
+                self.rect.x = WIDTH
 
         self.animate()
