@@ -10,3 +10,10 @@ Une copie de la licence est trouvable içi: https://creativecommons.org/licenses
 
 Tous les effets de son on été fait par jdwasabi
 https://jdwasabi.itch.io/8-bit-16-bit-sound-effects-pack
+
+Tous les sprites du personnage Dino par @ScissorMarks
+https://arks.itch.io/dino-characters
+
+Tous les sprites de l'environnement içi: https://bayat.itch.io/platform-game-assets?download
+
+Tous les autres Sprites de background sont sous CCO (domaine public)
