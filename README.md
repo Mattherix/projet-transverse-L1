@@ -14,4 +14,4 @@ https://jdwasabi.itch.io/8-bit-16-bit-sound-effects-pack
 Tous les sprites du personnage Dino par @ScissorMarks
 https://arks.itch.io/dino-characters
 
-Tous les sprites des plateformes içi: https://bayat.itch.io/platform-game-assets?download
+Tous les sprites de l'environnement içi: https://bayat.itch.io/platform-game-assets?download
