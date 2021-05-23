@@ -12,6 +12,7 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self)
         self.game = game
         self.image = pg.image.load('assets/dino gifs/DinoSprites_doux.gif')
+        self.image = pg.transform.scale(self.image, (30, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
         self.pos = vec(WIDTH / 2, HEIGHT / 2)
@@ -57,6 +58,7 @@ class Platform(pg.sprite.Sprite):
     def __init__(self, x, y, w, h):  # Parametre de la plateforme
         pg.sprite.Sprite.__init__(self)
         self.image = pg.image.load('assets/Grass.png')
+        self.image = pg.transform.scale(self.image, (w, h))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
