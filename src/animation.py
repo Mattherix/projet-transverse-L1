@@ -13,13 +13,13 @@ class AnimatedSprite(pg.sprite.Sprite):
         self.images = load_sprite_sheet(name, self.lenght)
         self.image = self.images[self.current_image]
 
-    def animate(self):
+    def animate(self, flip=False):
         # On actualise le numero de l'image actuel de l'animation
         if not self.image_counter:
             self.current_image += 1
             self.current_image %= self.lenght
 
-            self.image = self.images[self.current_image]
+            self.image = pg.transform.flip(self.images[self.current_image], flip, False)
 
             self.image_counter = self.frame_per_image
         else:

@@ -21,6 +21,7 @@ class Player(AnimatedSprite):
         self.pos = vec(WIDTH / 2, HEIGHT / 2)
         self.vel = vec(0, 0)
         self.acc = vec(0, 0)
+        self.sens = False
 
     def jump(self):
         """Saut, lorsqu'il saute a partir d'une plateforme"""
@@ -38,8 +39,10 @@ class Player(AnimatedSprite):
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT]:
             self.acc.x = -PLAYER_ACC  # Application de la gravité sur le personnage
+            self.sens = True
         if keys[pg.K_RIGHT]:
             self.acc.x = PLAYER_ACC  # regarder les settings
+            self.sens = False
 
         # application de la friction
         self.acc.x += self.vel.x * PLAYER_FRICTION
@@ -54,7 +57,7 @@ class Player(AnimatedSprite):
 
         self.rect.midbottom = self.pos  # positionnement du personnage sur la plateforme au debut de la partie
 
-        self.animate()
+        self.animate(self.sens)
 
 
 class Platform(pg.sprite.Sprite):
