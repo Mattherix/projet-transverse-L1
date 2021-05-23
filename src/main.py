@@ -22,10 +22,12 @@ class Game:
         self.load_data()
         self.mixer = pg.mixer
         self.musics = MUSICS
+        self.bg = pg.image.load(path.join(self.dir, BACKGROUND_PATH, "Sky.png"))
 
     def new(self):
         """Creer une nouvelle partie de jeu
            initialisation du score"""
+        self.play_music(self.musics['game'], 1000)
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.player = Player(self)
@@ -57,13 +59,11 @@ class Game:
     def run(self):
         """Boucle du jeu"""
         self.playing = True
-        self.play_music(self.musics['game'], 1000)
         while self.playing:
             self.clock.tick(FPS)
             self.events()
             self.update()
             self.draw()
-        self.play_music(self.musics['game-over'], 1000)
 
     def update(self):
         """Update de l'état du jeu"""
@@ -131,10 +131,11 @@ class Game:
     def show_start_screen(self):
         """Écran d'accueil"""
         # TODO: Fenetre d'avant le jeu à parametrer
-        self.screen.fill(BGCOLOR)
-        self.draw_text(TITLE, 48, WHITE, WIDTH / 2, HEIGHT / 9)
-        self.draw_text("et dirigez-vous à l'aide des fleches directionelles", 22, WHITE, WIDTH / 2, HEIGHT / 2)
-        self.draw_text("Appuyer sur Espace pour charger le saut", 22, WHITE, WIDTH / 2, HEIGHT / 3.5)
+        self.play_music(self.musics['menu'], 500)
+        self.screen.blit(self.bg, (0, 0))
+        self.draw_text(TITLE, 48, BLACK, WIDTH / 2, HEIGHT / 9)
+        self.draw_text("et dirigez-vous à l'aide des fleches directionelles", 22, BLACK, WIDTH / 2, HEIGHT / 2)
+        self.draw_text("Appuyer sur Espace pour charger le saut", 22, BLACK, WIDTH / 2, HEIGHT / 3.5)
         self.draw_text("Appuyer sur un bouton pour commencer", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
         self.draw_text("Meilleur score: " + str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT * 3 / 3.5)
         pg.display.flip()
@@ -144,7 +145,8 @@ class Game:
         """Affiche la fenetre de défaite"""
         if not self.running:
             return
-        self.screen.fill(BGCOLOR)
+        self.play_music(self.musics['game-over'], 1000)
+        self.screen.blit(self.bg, (0, 0))
         self.draw_text("C'est perdu! Dommage!", 55, WHITE, WIDTH / 2, HEIGHT / 9)
         self.draw_text("Score: " + str(self.score), 35, WHITE, WIDTH / 2, HEIGHT / 2)
         self.draw_text("Appuyer sur un bouton pour recommencer", 30, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
@@ -181,14 +183,16 @@ class Game:
     def play_music(self, musics, fadeout):
         self.mixer.music.fadeout(fadeout)
         # On choisi une musique au hasard, chaque musique à un poids, k est la longueur de la liste renvoyé
-        music_name = random.choices(
-            [music[0] for music in musics],
+        music_name, bg_name = random.choices(
+            [(music[0], music[2]) for music in musics],
             weights=[music[1] for music in musics],
             k=1
         )[0]
         self.mixer.music.load(path.join(self.dir, MUSICS_PATH, music_name))
         self.mixer.music.play(-1)
         self.mixer.music.set_volume(0.4)
+
+        self.bg = pg.image.load(path.join(self.dir, BACKGROUND_PATH, bg_name))
 
     def play_sound(self, sound):
         self.mixer.Sound(path.join(self.dir, SOUNDS_PATH, sound)).play()

@@ -29,21 +29,25 @@ YELLOW = (255, 255, 0)
 LIGHTBLUE = (0, 155, 155)
 BGCOLOR = LIGHTBLUE
 
+BACKGROUND_PATH = "assets/background"
+
 # Musique et Sond
 MUSICS_PATH = "musics"
 MUSICS = {
+    "menu": [
+        ("Ship.ogg", 20, "parallax-mountain.png"),
+    ],
     "game": [
-        ("Central City.ogg", 30),
-        ("Ship.ogg", 20),
-        ("Common Fight.ogg", 20),
-        ("Yellow Forest.ogg", 20),
-        ("Chiptronical.ogg", 10),
-        ("Dangerous Dungeon.ogg", 10),
-        ("Boss Fight.ogg", 10)
+        ("Central City.ogg", 30, "Sky.png"),
+        ("Common Fight.ogg", 20, "Sky.png"),
+        ("Yellow Forest.ogg", 20, "Sky.png"),
+        ("Chiptronical.ogg", 10, "Sky.png"),
+        ("Dangerous Dungeon.ogg", 10, "Sky.png"),
+        ("Boss Fight.ogg", 10, "Sky.png")
     ],
     "game-over": [
-        ("Game Over.ogg", 30),
-        ("Major Loss.ogg", 10)
+        ("Game Over.ogg", 30, "game-over.jpg"),
+        ("Major Loss.ogg", 10, "game-over.jpg")
     ]
 }
 SOUNDS_PATH = "sounds"

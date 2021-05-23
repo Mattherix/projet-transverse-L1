@@ -15,3 +15,5 @@ Tous les sprites du personnage Dino par @ScissorMarks
 https://arks.itch.io/dino-characters
 
 Tous les sprites de l'environnement içi: https://bayat.itch.io/platform-game-assets?download
+
+Tous les autres Sprites de background sont sous CCO (domaine public)
