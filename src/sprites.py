@@ -14,6 +14,8 @@ class Player(AnimatedSprite):
     def __init__(self, game):
         super().__init__("dino sheets/DinoSprites - doux - ", 10, FPS / 6)
         self.game = game
+        self.images = [pg.transform.scale2x(image) for image in self.images]
+        self.image = self.images[0]
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
         self.pos = vec(WIDTH / 2, HEIGHT / 2)
