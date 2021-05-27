@@ -1,5 +1,5 @@
 """Tous les pramètres du jeux"""
-TITLE = "CATAPULTE GAME"
+TITLE = "DinoJump"
 WIDTH = 480
 HEIGHT = 600
 FPS = 60
