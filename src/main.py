@@ -190,7 +190,7 @@ class Game:
         )[0]
         self.mixer.music.load(path.join(self.dir, MUSICS_PATH, music_name))
         self.mixer.music.play(-1)
-        self.mixer.music.set_volume(0.09)
+        self.mixer.music.set_volume(0.03)
 
         self.bg = pg.image.load(path.join(self.dir, BACKGROUND_PATH, bg_name))
 
