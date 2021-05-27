@@ -147,8 +147,8 @@ class Game:
             return
         self.play_music(self.musics['game-over'], 1000)
         self.screen.blit(self.bg, (0, 0))
-        self.draw_text("C'est perdu! Dommage!", 55, WHITE, WIDTH / 2, HEIGHT / 9)
-        self.draw_text("Score: " + str(self.score), 35, WHITE, WIDTH / 2, HEIGHT / 2)
+        self.draw_text("Perdu! Dommage!", 55, WHITE, WIDTH / 2, HEIGHT / 9)
+        self.draw_text("Score: " + str(self.score), 35, WHITE, WIDTH / 2, HEIGHT / 2- 60)
         self.draw_text("Appuyer sur un bouton pour recommencer", 30, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
         if self.score > self.highscore:  # remplacement meilleur score
             self.highscore = self.score
@@ -156,7 +156,7 @@ class Game:
             with open(path.join(self.dir, HS_FILE), 'w') as f:  # nouveau meilleur score dans les data
                 f.write(str(self.score))
         else:
-            self.draw_text("Votre record est: " + str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT / 2 + 40)
+            self.draw_text("Votre record est: " + str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT / 2 - 25)
         pg.display.flip()
         self.wait_for_key()
 
