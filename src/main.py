@@ -156,7 +156,7 @@ class Game:
             with open(path.join(self.dir, HS_FILE), 'w') as f:  # nouveau meilleur score dans les data
                 f.write(str(self.score))
         else:
-            self.draw_text("Votre record est: " + str(self.highscore), 22, WHITE, WIDTH / 2, HEIGHT / 2 - 25)
+            self.draw_text("Votre record est: " + str(self.highscore), 25, WHITE, WIDTH / 2, HEIGHT / 2 - 23)
         pg.display.flip()
         self.wait_for_key()
 
