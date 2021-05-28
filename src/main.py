@@ -23,6 +23,7 @@ class Game:
         self.mixer = pg.mixer
         self.musics = MUSICS
         self.bg = pg.image.load(path.join(self.dir, BACKGROUND_PATH, "Sky.png"))
+        self.bg = pg.transform.scale(self.bg, (WIDTH, HEIGHT))
 
     def new(self):
         """Creer une nouvelle partie de jeu
@@ -135,7 +136,7 @@ class Game:
         self.screen.blit(self.bg, (0, 0))
         self.draw_text(TITLE, 48, BLACK, WIDTH / 2, HEIGHT / 9)
         self.draw_text("et dirigez-vous à l'aide des fleches directionelles", 25, BLACK, WIDTH / 2, HEIGHT / 2)
-        self.draw_text("Appuyer sur Espace pour charger le saut", 25, BLACK, WIDTH / 2, HEIGHT / 3.5)
+        self.draw_text("Appuyer sur Espace pour sauter", 25, BLACK, WIDTH / 2, HEIGHT / 3.5)
         self.draw_text("Appuyer sur un bouton pour commencer", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
         self.draw_text("Meilleur score: " + str(self.highscore), 26, WHITE, WIDTH / 2, HEIGHT * 3 / 3.5)
         pg.display.flip()
